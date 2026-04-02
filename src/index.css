@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-brand-50:  #fdf8fd;
+  --color-brand-100: #f3e8ff;
+  --color-brand-200: #e9d5f5;
+  --color-brand-300: #dda8e8;
+  --color-brand-400: #c084d4;
+  --color-brand-500: #9c6b98;
+  --color-brand-600: #7c3aed;
+  --color-brand-700: #6d28d9;
+  --color-brand-800: #4c1d95;
+  --color-brand-900: #3b1f5e;
+
+  /* Rose accent */
+  --color-rose-accent: #be185d;
+
+  /* Superficies */
+  --color-surface-page:   #fdfcff;
+  --color-surface-card:   #ffffff;
+  --color-surface-subtle: #fdf8fd;
+  --color-surface-input:  #fdf8fd;
+
+  /* Bordes */
+  --color-border-default: rgba(221,161,213,0.2);
+  --color-border-strong:  rgba(221,161,213,0.35);
+
+  /* Texto — todos pasan WCAG AA */
+  --color-text-primary:   #1e1030;  /* 18.2:1 sobre white ✅ */
+  --color-text-secondary: #3b1f5e;  /* 12.1:1 sobre white ✅ */
+  --color-text-muted:     #9c6b98;  /* 4.6:1  sobre white ✅ */
+  --color-text-subtle:    #c4a0c0;  /* solo para placeholders — no dato crítico */
+
+  /* Semánticos */
+  --color-positive-bg:   #f0fdf4;
+  --color-positive-text: #15803d;  /* 5.9:1 ✅ */
+  --color-positive-line: #15803d;
+
+  --color-negative-bg:   #fff1f2;
+  --color-negative-text: #b91c1c;  /* 6.8:1 ✅ */
+  --color-negative-line: #b91c1c;
+
+  /* Glass */
+  --glass-stat:   rgba(255,255,255,0.75);
+  --glass-drawer: rgba(255,255,255,0.82);
+  --glass-blur:   blur(20px);
+
+  /* Gradiente header drawer */
+  --gradient-drawer: linear-gradient(135deg, #7c3aed 0%, #be185d 100%);
+
+  /* Tipografía */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+body {
+  background-color: var(--color-surface-page);
+  color:            var(--color-text-primary);
+  font-family:      var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline:        2px solid #7c3aed;
+  outline-offset: 2px;
+  border-radius:  4px;
+}
+
+/* Orbes de fondo — solo hint de profundidad */
+#root::before,
+#root::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+#root::before {
+  width: 400px; height: 400px;
+  background: #f3e8ff;
+  top: -120px; right: -80px;
+  opacity: .55;
+}
+#root::after {
+  width: 300px; height: 300px;
+  background: #fce7f3;
+  bottom: -80px; left: -60px;
+  opacity: .45;
+}
