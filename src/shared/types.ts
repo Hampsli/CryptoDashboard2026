@@ -17,6 +17,8 @@ export type CoinDetail = {
   readonly name:   string;
   readonly image:  { large: string };
   readonly description: { en: string };
+  readonly sentiment_votes_up_percentage:   number
+readonly sentiment_votes_down_percentage: number
   readonly market_data: {
     readonly current_price:               Record<string, number>;
     readonly ath:                         Record<string, number>;

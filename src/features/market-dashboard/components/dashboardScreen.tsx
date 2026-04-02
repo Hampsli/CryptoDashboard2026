@@ -3,6 +3,9 @@ import type { SortDirection, SortKey } from '../../../shared/types'
 import { useCoins } from '../hooks/useCoins'
 import { CoinSearch } from './search'
 import { Table } from './table'
+import { RefreshIndicator } from './refreshIndicator'
+import { MarketSentimentBar } from './tendenceBar'
+
 
 const getParam = (key: string, fallback: string): string =>
   new URLSearchParams(window.location.search).get(key) ?? fallback
@@ -34,7 +37,7 @@ export const DashboardScreen = ({ onRowClick }: { onRowClick: (id: string) => vo
     return () => window.removeEventListener('popstate', handler)
   }, [])
 
-  const { data, isLoading, isError} = useCoins()
+const { data, isLoading, isError, refetch } = useCoins()
 
   const filtered = (data ?? []).filter(coin =>
     coin.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -56,8 +59,9 @@ export const DashboardScreen = ({ onRowClick }: { onRowClick: (id: string) => vo
   }
 
   return (
-    <main aria-label="Crypto market dashboard" className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-8 md:py-12">
-      
+    <main aria-label="Crypto market dashboard"  className="relative z-10 max-w-6xl mx-auto px-4 md:px-8 py-8 md:py-12">
+        <div className="flex items-start justify-between mb-1">
+    <div>
       <h1 className="text-2xl font-light text-[var(--color-text-primary)] mb-1 tracking-tight">
        Crypto Dashboard
       </h1>
@@ -65,6 +69,14 @@ export const DashboardScreen = ({ onRowClick }: { onRowClick: (id: string) => vo
       <p className="text-xs text-[var(--color-text-muted)] uppercase tracking-widest mb-6">
         Top 20 by Crypto Dashboard
       </p>
+    </div>
+        <RefreshIndicator
+      intervalMs={60_000}
+      onRefresh={refetch}
+      isLoading={isLoading}
+    />
+  </div>
+    {data && <MarketSentimentBar coins={data} />}
 
       <CoinSearch
         value={search}

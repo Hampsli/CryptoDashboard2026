@@ -2,6 +2,7 @@ import { useEffect, useCallback } from 'react'
 import { CoinChart } from './coinChart'
 import { DetailDescription } from './detailDescription'
 import { useCoinChart, useCoinDetail } from '../../market-dashboard/hooks/useDetailCoin'
+import { SentimentVotes } from './sentimentDetail'
 
 type Props = {
   coinId:  string | null
@@ -205,6 +206,13 @@ export const DetailDrawer = ({ coinId, onClose }: Props) => {
                   <DetailDescription text={detail.description.en} />
                 </div>
               )}
+              {(detail.sentiment_votes_up_percentage > 0 ||
+  detail.sentiment_votes_down_percentage > 0) && (
+  <SentimentVotes
+    up={detail.sentiment_votes_up_percentage}
+    down={detail.sentiment_votes_down_percentage}
+  />
+)}
             </>
           )}
         </div>
