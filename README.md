@@ -1,4 +1,4 @@
-# 🚀 Cryto Dashboard
+# Cryto Dashboard
 **Sophisticated Crypto Intelligence for the Modern CEO.**
 
 Welcome to **Cryto Dashboard**, a premier, high-performance dashboard designed for successful women and market leaders who demand clarity, speed, and elegance in their financial overview. Built to provide real-time market insights with a refined aesthetic.
@@ -16,7 +16,7 @@ Welcome to **Cryto Dashboard**, a premier, high-performance dashboard designed f
 * **Tailwind CSS** (Custom executive design system)
 * **Recharts** (Professional-grade financial visualization)
 
-## 🏁 Getting Started
+## Getting Started
 
 1.  **Clone & Install:**
     ```bash
@@ -30,10 +30,10 @@ Welcome to **Cryto Dashboard**, a premier, high-performance dashboard designed f
     npm run dev
     ```
 
-## 🧠 Technical Decisions
+## Technical Decisions
 The architecture was chosen to mirror the efficiency of a CEO's workflow. I implemented **TanStack Query** to ensure that data is always fresh without requiring manual refreshes, mirroring the "set it and forget it" reliability required in high-stakes environments. The UI uses a **custom-tuned Tailwind configuration** with specific CSS variables to achieve a minimalist, high-end aesthetic that stands out from cluttered, standard crypto tools.
 
-## 🤖 AI Usage
+## AI Usage
 
 I used Claude (Anthropic) as a pair programming assistant throughout this challenge. I want to be transparent about how — because I think *how* 
 you use AI says more about your engineering judgment than whether you use it at all.
