@@ -3,6 +3,7 @@ import { CoinChart } from './coinChart'
 import { DetailDescription } from './detailDescription'
 import { useCoinChart, useCoinDetail } from '../../market-dashboard/hooks/useDetailCoin'
 import { SentimentVotes } from './sentimentDetail'
+import { ErrorPage } from '../../../shared/components/ErrorPage'
 
 type Props = {
   coinId:  string | null
@@ -27,6 +28,9 @@ export const DetailDrawer = ({ coinId, onClose }: Props) => {
   const {
     data:      detail,
     isLoading: loadingDetail,
+    isError:   errorDetail,
+    error:     detailError,
+    refetch:   refetchDetail,
   } = useCoinDetail(coinId)
 
   const { data: chart, isLoading: loadingChart } = useCoinChart(coinId)
@@ -58,8 +62,7 @@ export const DetailDrawer = ({ coinId, onClose }: Props) => {
       />
 
       {/* Drawer */}
-      <aside
-        role="dialog"
+      <dialog
         aria-modal="true"
         aria-label={detail ? `${detail.name} detail` : 'Asset detail'}
         className="fixed right-0 top-0 h-full w-full max-w-md z-50
@@ -93,9 +96,9 @@ export const DetailDrawer = ({ coinId, onClose }: Props) => {
         {/* Content */}
         <div className="flex-1 px-6 py-5 space-y-6">
 
-          {/* {errorDetail && (
-            <ErrorState error={detailError} onRetry={refetchDetail} />
-          )} */}
+          {errorDetail && (
+            <ErrorPage error={detailError} onRetry={refetchDetail} />
+          )}
 
           {loadingDetail && (
             <div className="animate-pulse space-y-4">
@@ -216,7 +219,7 @@ export const DetailDrawer = ({ coinId, onClose }: Props) => {
             </>
           )}
         </div>
-      </aside>
+      </dialog>
     </>
   )
 }
