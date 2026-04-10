@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
 import type { CoinMarket, SortKey, SortDirection } from '../../../shared/types'
 import { Row } from './row'
+import { EmptyPage } from '../../../shared/components/EmptyPage'
+
 
 type Props = {
   coins:      CoinMarket[]
@@ -34,7 +36,7 @@ const SortIcon = ({ active, direction }: SortIconProps) => (
   </svg>
 )
 
-export const Table = ({ coins, sortKey, sortDir, onSort, onRowClick }: Props) => {
+export const Table = ({ coins, sortKey, sortDir, onSort, onRowClick,search }: Props) => {
   const sorted = useMemo(() => {
     return [...coins].sort((a, b) => {
       const av = a[sortKey] ?? 0
@@ -43,7 +45,7 @@ export const Table = ({ coins, sortKey, sortDir, onSort, onRowClick }: Props) =>
     })
   }, [coins, sortKey, sortDir])
 
-  // if (sorted.length === 0) return <EmptyState search={search} />
+  if (sorted.length === 0) return <EmptyPage search={search} />
 
   return (
     <div className="overflow-x-auto rounded-2xl border
